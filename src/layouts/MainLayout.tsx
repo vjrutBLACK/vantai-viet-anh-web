@@ -1,0 +1,80 @@
+import { useState } from 'react';
+import { Outlet, useNavigate, useLocation } from 'react-router-dom';
+import { ProLayout } from '@ant-design/pro-components';
+import {
+  DashboardOutlined,
+  CarOutlined,
+  UserOutlined,
+  TeamOutlined,
+  SwapOutlined,
+  AccountBookOutlined,
+  BarChartOutlined,
+  LogoutOutlined,
+} from '@ant-design/icons';
+import { Dropdown } from 'antd';
+import type { MenuProps } from 'antd';
+import { ROUTES, MENU_ROUTES } from '@/config/routes';
+import { useAuth } from '@/hooks/useAuth';
+
+const ICON_MAP: Record<string, React.ReactNode> = {
+  DashboardOutlined: <DashboardOutlined />,
+  CarOutlined: <CarOutlined />,
+  UserOutlined: <UserOutlined />,
+  TeamOutlined: <TeamOutlined />,
+  SwapOutlined: <SwapOutlined />,
+  AccountBookOutlined: <AccountBookOutlined />,
+  BarChartOutlined: <BarChartOutlined />,
+};
+
+export function MainLayout() {
+  const navigate = useNavigate();
+  const location = useLocation();
+  const { user, logout } = useAuth();
+  const [pathname, setPathname] = useState(location.pathname);
+
+  const menuItems = MENU_ROUTES.map((r) => ({
+    path: r.path,
+    name: r.name,
+    icon: ICON_MAP[r.icon] ?? <DashboardOutlined />,
+  }));
+
+  const userMenuItems: MenuProps['items'] = [
+    { key: 'logout', icon: <LogoutOutlined />, label: 'Đăng xuất', onClick: logout },
+  ];
+
+  return (
+    <ProLayout
+      title="Vận Tải Anh Việt"
+      logo={null}
+      layout="mix"
+      splitMenus={false}
+      location={{ pathname }}
+      menu={{ request: async () => menuItems }}
+      menuItemRender={(item, dom) => (
+        <a
+          onClick={() => {
+            setPathname(item.path || '/');
+            navigate(item.path || '/');
+          }}
+        >
+          {dom}
+        </a>
+      )}
+      avatarProps={{
+        src: undefined,
+        title: user?.fullName ?? 'Admin',
+        size: 'small',
+        render: (_, dom) => (
+          <Dropdown menu={{ items: userMenuItems }} placement="bottomRight">
+            {dom}
+          </Dropdown>
+        ),
+      }}
+      headerContentRender={() => null}
+    >
+      <div style={{ padding: 24, minHeight: 'calc(100vh - 120px)' }}>
+        <Outlet />
+      </div>
+    </ProLayout>
+  );
+}
