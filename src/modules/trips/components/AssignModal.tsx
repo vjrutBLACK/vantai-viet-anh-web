@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { Form, Modal, Select } from 'antd';
 
 type AssignModalProps = {

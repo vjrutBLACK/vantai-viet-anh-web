@@ -1,4 +1,4 @@
-import { Navigate, Outlet, RouteObject, useRoutes } from 'react-router-dom';
+import { Navigate, RouteObject, useRoutes } from 'react-router-dom';
 import { MainLayout } from '@/layouts/MainLayout';
 import { PermissionGuard } from '@/components/auth/PermissionGuard';
 import { LoginPage } from '@/modules/system/pages/LoginPage';

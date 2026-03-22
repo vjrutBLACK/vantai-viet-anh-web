@@ -1,5 +1,5 @@
 import { useState, useCallback, useEffect } from 'react';
-import { authApi, type LoginResponse } from '@/api/auth';
+import { authApi } from '@/api/auth';
 import { APP_CONFIG } from '@/config';
 
 export interface AuthUser {
@@ -23,7 +23,7 @@ export function useAuth() {
     setLoading(true);
     setError(null);
     try {
-      const res = await authApi.login({ email, password }) as { data: LoginResponse };
+      const res = await authApi.login({ email, password });
       const { token, user: u } = res.data;
       localStorage.setItem(APP_CONFIG.TOKEN_KEY, token);
       localStorage.setItem(APP_CONFIG.USER_KEY, JSON.stringify(u));
@@ -49,7 +49,7 @@ export function useAuth() {
     const token = localStorage.getItem(APP_CONFIG.TOKEN_KEY);
     if (!token) return null;
     try {
-      const res = await authApi.getMe() as { data: AuthUser };
+      const res = await authApi.getMe();
       const u = res.data;
       localStorage.setItem(APP_CONFIG.USER_KEY, JSON.stringify(u));
       setUser(u);

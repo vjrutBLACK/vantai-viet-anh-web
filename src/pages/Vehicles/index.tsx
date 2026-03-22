@@ -1,7 +1,6 @@
-import { useQuery } from '@tanstack/react-query';
 import { ProTable } from '@ant-design/pro-components';
 import type { ProColumns } from '@ant-design/pro-components';
-import { Button, Space, Tag } from 'antd';
+import { Button, Tag } from 'antd';
 import { vehiclesApi, type Vehicle } from '@/api/vehicles';
 
 export default function VehiclesPage() {

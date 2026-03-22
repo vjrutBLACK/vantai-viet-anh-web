@@ -6,7 +6,6 @@ import type { Dayjs } from 'dayjs';
 import { useQuery } from '@tanstack/react-query';
 import { DataTable } from '@/components/common/DataTable';
 import { fetchVehicleDetail, fetchVehicleTrips, fetchVehicleRepairs } from '../services';
-import type { Vehicle } from '../types';
 import { ROUTES } from '@/config/routes';
 import { formatMoneyVi } from '@/utils/number';
 import type { VehicleRepair } from '../services';

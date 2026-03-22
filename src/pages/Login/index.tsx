@@ -7,7 +7,7 @@ import { ROUTES } from '@/config/routes';
 
 export default function LoginPage() {
   const navigate = useNavigate();
-  const { user, loading, error, login } = useAuth();
+  const { user, loading, login } = useAuth();
 
   useEffect(() => {
     if (user) navigate(ROUTES.DASHBOARD);

@@ -1,6 +1,6 @@
 import { ProTable } from '@ant-design/pro-components';
 import type { ProColumns } from '@ant-design/pro-components';
-import { Button, Space } from 'antd';
+import { Button } from 'antd';
 import { UploadOutlined, DownloadOutlined } from '@ant-design/icons';
 import { tripsApi, type Trip } from '@/api/trips';
 import dayjs from 'dayjs';

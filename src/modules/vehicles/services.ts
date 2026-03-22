@@ -31,7 +31,7 @@ export async function fetchVehicles(params: VehicleQueryParams) {
 
 export async function fetchVehicleDetail(id: string) {
   const res = await apiClient.get<{ success?: boolean; data: Vehicle }>(`/vehicles/${id}`);
-  return (res as { data?: Vehicle }).data ?? res;
+  return res.data;
 }
 
 export type VehicleTripsParams = {
@@ -97,7 +97,7 @@ export async function createVehicle(
   if (payload.status === 'active') body.status = 'ACTIVE';
   else if (payload.status) body.status = payload.status;
   const res = await apiClient.post<{ success: boolean; data: Vehicle }>('/vehicles', body);
-  return (res as { data?: Vehicle }).data ?? res;
+  return res.data;
 }
 
 /** API: plateNumber|licensePlate, type|vehicleType, status ACTIVE→active */
@@ -108,6 +108,6 @@ export async function updateVehicle(id: string, payload: Partial<Omit<Vehicle, '
   if (payload.status === 'active') body.status = 'ACTIVE';
   else if (payload.status) body.status = payload.status;
   const res = await apiClient.patch<{ success: boolean; data: Vehicle }>(`/vehicles/${id}`, body);
-  return (res as { data?: Vehicle }).data ?? res;
+  return res.data;
 }
 

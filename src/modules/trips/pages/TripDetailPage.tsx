@@ -6,7 +6,6 @@ import {
   Card,
   Descriptions,
   Modal,
-  Popconfirm,
   Space,
   Spin,
   message,
@@ -23,9 +22,11 @@ import { useQuery } from '@tanstack/react-query';
 import { vehiclesApi, type Vehicle } from '@/api/vehicles';
 import { employeesApi, type Employee } from '@/api/employees';
 
-function money(n: number | undefined | null) {
-  if (n == null || Number.isNaN(Number(n))) return '—';
-  return Number(n).toLocaleString('vi-VN');
+function money(n: string | number | undefined | null) {
+  if (n == null || n === '') return '—';
+  const x = Number(n);
+  if (Number.isNaN(x)) return '—';
+  return x.toLocaleString('vi-VN');
 }
 
 function driverName(t: Trip) {

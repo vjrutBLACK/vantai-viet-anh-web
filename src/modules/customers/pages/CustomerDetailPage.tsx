@@ -43,7 +43,7 @@ export function CustomerDetailPage() {
     );
   }
 
-  const { customer, debt, recentTrips, recentPayments } = detail;
+  const { customer, debt } = detail;
 
   return (
     <div>

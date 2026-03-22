@@ -21,8 +21,7 @@ export function EmployeeDetailPage() {
     enabled: !!id,
   });
 
-  const raw = (employeeRes as { data?: Employee })?.data ?? employeeRes;
-  const employee = raw as (Employee & { base_salary?: number }) | undefined;
+  const employee = employeeRes?.data as (Employee & { base_salary?: number }) | undefined;
   const baseSalaryRaw = employee?.baseSalary ?? employee?.base_salary;
   const baseSalary =
     typeof baseSalaryRaw === 'number' ? baseSalaryRaw : Number(baseSalaryRaw);
@@ -100,8 +99,8 @@ function EmployeeTripsTab({ employeeId }: { employeeId: string }) {
         fromDate: dateRange?.[0]?.format('YYYY-MM-DD'),
         toDate: dateRange?.[1]?.format('YYYY-MM-DD'),
       });
-      const d = (res as { data?: EmployeeTrip[] }).data ?? [];
-      const total = (res as { pagination?: { total: number } }).pagination?.total ?? d.length;
+      const d = res.data ?? [];
+      const total = res.pagination?.total ?? d.length;
       return { data: d, total };
     },
     enabled: !!employeeId,
@@ -183,7 +182,7 @@ function EmployeeSalariesTab({ employeeId }: { employeeId: string }) {
         toDate: toDate!,
         source,
       });
-      return (res as { data?: EmployeeSalary[] }).data ?? [];
+      return res.data ?? [];
     },
     enabled: !!employeeId && canQuery && hasQueried,
   });

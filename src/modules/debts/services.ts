@@ -29,7 +29,7 @@ export async function fetchDebts(params: DebtListParams) {
 }
 
 export async function fetchDebtDetail(id: string) {
-  const res = await apiClient.get<{ data: Debt }>(`/debts/${id}`);
+  const res = await apiClient.get<{ success?: boolean; data: Debt }>(`/debts/${id}`);
   return res.data;
 }
 
@@ -62,7 +62,7 @@ export async function fetchSuppliers(params?: { page?: number; limit?: number })
     data: Supplier[];
     pagination?: { page: number; limit: number; total: number; totalPages: number };
   }>('/suppliers', { params });
-  const data = Array.isArray(res?.data) ? res.data : (res as { data?: Supplier[] })?.data ?? [];
+  const data = res.data ?? [];
   const total = res.pagination?.total ?? data.length;
   return { data, total };
 }

@@ -1,7 +1,7 @@
 import { useMemo, useState } from 'react';
 import { Button, Form, Input, InputNumber, Select, Space, Tag } from 'antd';
 import { PlusOutlined, UploadOutlined } from '@ant-design/icons';
-import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
+import { keepPreviousData, useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
 import { DataTable } from '@/components/common/DataTable';
 import { FormModal } from '@/components/common/FormModal';
@@ -42,7 +42,7 @@ export function CustomerListPage() {
   const { data, isLoading } = useQuery({
     queryKey: ['customers', { page, pageSize, search, status }],
     queryFn: () => fetchCustomers({ page, limit: pageSize, search, status }),
-    keepPreviousData: true,
+    placeholderData: keepPreviousData,
   });
 
   const { data: employeesRes, isFetching: employeesLoading } = useQuery({

@@ -100,7 +100,7 @@ export function VehicleListPage() {
         data: payload,
       });
     } else {
-      await createMutation.mutateAsync(payload as Omit<Vehicle, 'id'>);
+      await createMutation.mutateAsync(payload as Parameters<typeof createVehicle>[0]);
     }
   };
 

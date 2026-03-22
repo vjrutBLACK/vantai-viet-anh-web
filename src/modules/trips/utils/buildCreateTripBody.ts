@@ -56,18 +56,18 @@ export function buildCreateTripBody(values: TripFormSubmitValues): Record<string
   const cargoTrim = values.cargo?.trim();
   if (cargoTrim) body.cargoType = cargoTrim;
   const cw = values.cargoWeight;
-  if (cw != null && cw !== '' && Number.isFinite(Number(cw))) {
+  if (cw != null && String(cw).trim() !== '' && Number.isFinite(Number(cw))) {
     body.cargoWeight = Number(cw);
   }
   const cq = values.cargoQuantity;
-  if (cq != null && cq !== '' && Number.isFinite(Number(cq))) {
+  if (cq != null && String(cq).trim() !== '' && Number.isFinite(Number(cq))) {
     body.cargoQuantity = Math.floor(Number(cq));
   }
 
   const addressTrim = values.address?.trim();
   if (addressTrim) body.address = addressTrim;
 
-  if (values.price != null && values.price !== '') {
+  if (values.price != null && String(values.price).trim() !== '') {
     body.price = Number(values.price);
   }
 
@@ -122,7 +122,7 @@ export function tripToFormValues(trip: Trip): TripFormSubmitValues {
     notes: trip.notes?.trim() ? trip.notes : undefined,
     contactEmployeeId: trip.contactEmployeeId ?? null,
     commissionRateApplied:
-      trip.commissionRateApplied == null || trip.commissionRateApplied === ''
+      trip.commissionRateApplied == null || String(trip.commissionRateApplied).trim() === ''
         ? null
         : (() => {
             const x = Number(trip.commissionRateApplied);
