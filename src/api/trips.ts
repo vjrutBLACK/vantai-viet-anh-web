@@ -11,15 +11,13 @@ export interface Trip {
   cargoType?: string;
   cargoWeight?: number;
   cargoQuantity?: number;
-  origin?: string;
-  destination?: string;
-  distance?: number;
-  revenue?: number;
-  fuelCost?: number;
-  tollCost?: number;
-  driverSalary?: number;
-  otherCosts?: number;
-  profit?: number;
+  address?: string;
+  revenue?: number | string;
+  fuelCost?: number | string;
+  tollCost?: number | string;
+  driverSalary?: number | string;
+  otherCosts?: number | string;
+  profit?: number | string;
   status: string;
   notes?: string;
 }

@@ -5,15 +5,19 @@ export interface LoginPayload {
   password: string;
 }
 
+export interface AuthUser {
+  id: string;
+  email: string;
+  fullName: string;
+  role: string;
+  companyId: string;
+}
+
 export interface LoginResponse {
   token: string;
-  user: {
-    id: string;
-    email: string;
-    fullName: string;
-    role: string;
-    companyId: string;
-  };
+  accessToken: string;
+  refreshToken: string;
+  user: AuthUser;
 }
 
 export interface ApiResponse<T> {
@@ -26,5 +30,8 @@ export const authApi = {
   login: (payload: LoginPayload) =>
     apiClient.post<ApiResponse<LoginResponse>>('/auth/login', payload),
 
-  getMe: () => apiClient.get<ApiResponse<LoginResponse['user']>>('/auth/me'),
+  refresh: (refreshToken: string) =>
+    apiClient.post<ApiResponse<LoginResponse>>('/auth/refresh', { refreshToken }),
+
+  getMe: () => apiClient.get<ApiResponse<AuthUser>>('/auth/me'),
 };

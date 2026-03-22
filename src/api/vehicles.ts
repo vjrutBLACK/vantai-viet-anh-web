@@ -9,6 +9,8 @@ export interface Vehicle {
   year?: number;
   capacity?: number;
   status: string;
+  /** Optional — khi xe bảo trì; BE tạo/cập nhật giao dịch chi */
+  maintenanceCost?: number | string | null;
 }
 
 export interface VehicleListParams {

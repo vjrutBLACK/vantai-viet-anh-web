@@ -11,18 +11,23 @@
   "dependencies": {
     "antd": "^5.14.0",
     "@ant-design/pro-components": "^2.6.0",
+    "@tanstack/react-query": "^5.17.0",
+    "axios": "^1.6.2",
+    "dayjs": "^1.11.10",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-hook-form": "^7.51.0",
     "react-router-dom": "^6.21.0",
-    "axios": "^1.6.2",
-    "@tanstack/react-query": "^5.17.0",
-    "dayjs": "^1.11.10"
+    "recharts": "^2.12.7",
+    "zod": "^3.23.8"
   },
   "devDependencies": {
+    "@hookform/resolvers": "^3.3.4",
     "@types/react": "^18.2.45",
     "@types/react-dom": "^18.2.18",
     "@vitejs/plugin-react": "^4.2.1",
     "typescript": "^5.3.3",
-    "vite": "^5.0.10"
+    "vite": "^5.0.10",
+    "xlsx": "^0.18.5"
   }
 }

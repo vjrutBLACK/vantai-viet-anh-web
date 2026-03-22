@@ -8,7 +8,9 @@ export interface Customer {
   email?: string;
   address?: string;
   taxCode?: string;
-  contactPerson?: string;
+  contactEmployeeId?: string | null;
+  commissionRateMin?: number;
+  commissionRateMax?: number;
   status: string;
 }
 

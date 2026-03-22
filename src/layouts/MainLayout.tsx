@@ -7,14 +7,15 @@ import {
   UserOutlined,
   TeamOutlined,
   SwapOutlined,
+  DollarOutlined,
   AccountBookOutlined,
   BarChartOutlined,
   LogoutOutlined,
 } from '@ant-design/icons';
 import { Dropdown } from 'antd';
 import type { MenuProps } from 'antd';
-import { ROUTES, MENU_ROUTES } from '@/config/routes';
-import { useAuth } from '@/hooks/useAuth';
+import { MENU_ROUTES } from '@/config/routes';
+import { useAuthContext } from '@/context/AuthContext';
 
 const ICON_MAP: Record<string, React.ReactNode> = {
   DashboardOutlined: <DashboardOutlined />,
@@ -22,6 +23,7 @@ const ICON_MAP: Record<string, React.ReactNode> = {
   UserOutlined: <UserOutlined />,
   TeamOutlined: <TeamOutlined />,
   SwapOutlined: <SwapOutlined />,
+  DollarOutlined: <DollarOutlined />,
   AccountBookOutlined: <AccountBookOutlined />,
   BarChartOutlined: <BarChartOutlined />,
 };
@@ -29,7 +31,7 @@ const ICON_MAP: Record<string, React.ReactNode> = {
 export function MainLayout() {
   const navigate = useNavigate();
   const location = useLocation();
-  const { user, logout } = useAuth();
+  const { user, logout } = useAuthContext();
   const [pathname, setPathname] = useState(location.pathname);
 
   const menuItems = MENU_ROUTES.map((r) => ({

@@ -33,8 +33,7 @@ export default function TripsPage() {
       key: 'customer',
       width: 150,
     },
-    { title: 'Điểm đi', dataIndex: 'origin', key: 'origin', width: 120 },
-    { title: 'Điểm đến', dataIndex: 'destination', key: 'destination', width: 120 },
+    { title: 'Địa chỉ chuyến', dataIndex: 'address', key: 'address', width: 180, ellipsis: true },
     {
       title: 'Doanh thu',
       dataIndex: 'revenue',
